@@ -1,15 +1,41 @@
-# Terraform state files
+# Terraform
 *.tfstate
 *.tfstate.backup
-
-# Terraform variables file
 terraform.tfvars
-
-# Terraform dependency lock file
 .terraform.lock.hcl
-
-# IDE directories
-.idea/
-
+.terraform/
 # Generated files
 *.iml
+
+# Ignore macOS system files
+.DS_Store
+
+# Node.js dependencies
+node_modules/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Java compiled classes
+*.class
+
+# Log files
+*.log
+
+# Environment variables
+.env
+
+# Build directories
+dist/
+build/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
