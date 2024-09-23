@@ -2,6 +2,8 @@
 *.tfstate
 *.tfstate.backup
 terraform.tfvars
+*.auto.tfvars
+.terraform.tfstate*
 .terraform.lock.hcl
 .terraform/
 # Generated files

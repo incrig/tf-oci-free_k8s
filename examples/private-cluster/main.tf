@@ -7,21 +7,19 @@ module "tls" {
 module "free_k8s" {
   source = "../../"
   #  version = "0.0.5"
+  user_ocid     = var.user_ocid
+  tenancy_ocid  = var.tenancy_ocid
+  home_region   = var.home_region
+  region        = var.region
 
-  tenancy_id  = var.tenancy_id
-  home_region = var.home_region
-  region      = var.region
-
-  node_pool_size       = 2
-  node_pool_os_version = "8.7"
-
-  kubernetes_version          = "v1.26.2"
-  control_plane_type          = "private"
+  control_plane_is_public     = "true"
   control_plane_allowed_cidrs = ["0.0.0.0/0"]
 
   providers = {
     oci.home = oci.home
   }
+
+  private_key_path = var.ssh_private_key_path
 }
 
 module "kubernetes" {

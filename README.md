@@ -10,7 +10,7 @@ module "free_k8s" {
   source = "ystory/always-free-oke/oci"
   #  version = "x.x.x"
 
-  tenancy_id  = var.tenancy_id
+  tenancy_ocid  = var.tenancy_ocid
   home_region = var.home_region
   region      = var.region
 

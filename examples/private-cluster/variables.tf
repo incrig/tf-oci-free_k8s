@@ -1,12 +1,8 @@
+variable "user_ocid" {}
+
 variable "name" {
   type    = string
   default = "free-k8s"
-}
-
-# OCI Provider parameters
-variable "api_fingerprint" {
-  description = "Fingerprint of the API private key to use with OCI API."
-  type        = string
 }
 
 variable "api_private_key" {
@@ -41,12 +37,12 @@ variable "region" {
   type        = string
 }
 
-variable "tenancy_id" {
+variable "tenancy_ocid" {
   description = "The tenancy id of the OCI Cloud Account in which to create the resources."
   type        = string
 }
 
-variable "user_id" {
+variable "user_ocid" {
   description = "The id of the user that terraform will use to create the resources."
   type        = string
 }

@@ -29,15 +29,14 @@ cp terraform.tfvars.example terraform.tfvars
 
 ```hcl
 # Identity and access parameters
-user_id = ""
-api_fingerprint = ""
+user_ocid = ""
 api_private_key_path = ""
 # api_private_key      = <<EOT
 #-----BEGIN RSA PRIVATE KEY-----
 #content+of+api+key
 #-----END RSA PRIVATE KEY-----
 #EOT
-tenancy_id = ""
+tenancy_ocid = ""
 region = ""
 home_region = ""
 
