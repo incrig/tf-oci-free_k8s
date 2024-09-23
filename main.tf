@@ -6,7 +6,7 @@ module "compartment" {
 
 module "oke" {
   source  = "oracle-terraform-modules/oke/oci"
-  version = "4.5.9"
+  version = "5.1.8"
 
   tenancy_id = var.tenancy_id
 
