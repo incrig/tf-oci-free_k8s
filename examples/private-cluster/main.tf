@@ -12,7 +12,7 @@ module "free_k8s" {
   home_region = var.home_region
   region      = var.region
 
-  node_pool_size = 2
+  node_pool_size       = 2
   node_pool_os_version = "8.7"
 
   kubernetes_version          = "v1.26.2"

@@ -12,7 +12,7 @@ resource "null_resource" "bastion_tunnel" {
 
 resource "local_file" "bastion_tunnel" {
   depends_on = [local_file.id_rsa, local_file.id_rsa_pub]
-  content    = templatefile("${path.module}/scripts/create_bastion_tunnel_template.sh",
+  content = templatefile("${path.module}/scripts/create_bastion_tunnel_template.sh",
     {
       bastion_id       = var.control_plane_bastion_service_id
       public_key_file  = local_file.id_rsa_pub.filename

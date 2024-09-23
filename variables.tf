@@ -56,19 +56,19 @@ variable "ssh_public_key_path" {
 
 # Kubernetes cluster
 variable "kubernetes_version" {
-  default     = "v1.24.1"
+  default     = "v1.30.1"
   description = "The version of kubernetes to use when provisioning OKE or to upgrade an existing OKE cluster to."
   type        = string
 }
 
-variable "control_plane_type" {
-  default     = "public"
-  description = "Whether to allow public or private access to the control plane endpoint"
-  type        = string
+variable "control_plane_is_public" {
+  default     = "true"
+  description = "Whether the Kubernetes control plane endpoint should be allocated a public IP address to enable access over public internet."
+  type        = bool
 
   validation {
-    condition     = contains(["public", "private"], var.control_plane_type)
-    error_message = "Accepted values are public, or private."
+    condition     = contains(["true", "false"], var.control_plane_is_public)
+    error_message = "Accepted values are true or false."
   }
 }
 
@@ -80,6 +80,7 @@ variable "control_plane_allowed_cidrs" {
 
 variable "node_pool_size" {
   type        = number
+  default     = 2
   description = "The size of the node pool. Valid values are 1, 2, or 4."
   validation {
     condition     = contains([1, 2, 4], var.node_pool_size)
@@ -87,8 +88,14 @@ variable "node_pool_size" {
   }
 }
 
+variable "node_pool_boot_size" {
+  type        = number
+  default     = 47
+  description = "Boot drive size for each node. OCI provides total 200 GB free per tenant."
+}
+
 variable "node_pool_os_version" {
-  default     = "7.9"
+  default     = "8.10"
   description = "The version of operating system to use for the worker nodes."
   type        = string
 }

@@ -1,7 +1,6 @@
 module "compartment" {
   source = "./modules/compartment"
-
-  name = var.name
+  name   = var.name
 }
 
 module "oke" {
@@ -21,10 +20,9 @@ module "oke" {
 
   # general oci parameters
   compartment_id = module.compartment.compartment_id
-  label_prefix   = var.label_prefix
 
   # bastion host
-  create_bastion_host = false
+  create_bastion = false
 
   # operator host
   create_operator = false
@@ -33,19 +31,21 @@ module "oke" {
   cluster_name                = var.name
   control_plane_allowed_cidrs = var.control_plane_allowed_cidrs
   kubernetes_version          = var.kubernetes_version
-  dashboard_enabled           = true
   cluster_type                = "basic"
-  control_plane_type          = var.control_plane_type
+  control_plane_is_public     = var.control_plane_is_public
 
   # node pools
-  node_pools = {
+  worker_pool_mode = "node-pool"
+
+  worker_pools = {
     arm-ampere-a1-free-tier = {
+      size             = var.node_pool_size,
       shape            = "VM.Standard.A1.Flex",
       ocpus            = local.max_cores_free_tier / var.node_pool_size,
       memory           = local.max_memory_free_tier_gb / var.node_pool_size,
-      node_pool_size   = var.node_pool_size,
-      boot_volume_size = 100,
-      label            = {
+      boot_volume_size = var.node_pool_boot_size,
+      create           = true,
+      label = {
         pool         = "arm-ampere-a1-free-tier",
         architecture = "arm",
         pool-type    = "free-tier",
@@ -55,12 +55,12 @@ module "oke" {
       }
     }
   }
-  node_pool_os_version = var.node_pool_os_version
+
+  worker_image_os_version = var.node_pool_os_version
 
   # oke load balancers
   load_balancers          = "both"
   preferred_load_balancer = "public"
-  public_lb_allowed_ports = [80, 443]
 
   providers = {
     oci.home = oci.home
