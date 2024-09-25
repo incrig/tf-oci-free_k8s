@@ -1,5 +1,3 @@
-variable "user_ocid" {}
-
 variable "name" {
   type    = string
   default = "free-k8s"
@@ -80,7 +78,7 @@ variable "ssh_public_key_path" {
 }
 
 variable "kubernetes_version" {
-  default     = "v1.24.1"
+  default     = ""
   description = "The version of kubernetes to use when provisioning OKE or to upgrade an existing OKE cluster to."
   type        = string
 }

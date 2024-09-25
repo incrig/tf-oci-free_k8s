@@ -29,20 +29,20 @@ module "free_k8s" {
 
 | Name      | Version    |
 |-----------|------------|
-| terraform | >= 1.2.0   |
-| oci       | >= 4.122.0 |
+| terraform | >= 1.9.0   |
+| oci       | >= 6.10.0 |
 
 ## Providers
 
 | Name | Version    |
 |------|------------|
-| oci  | >= 4.122.0 |
+| oci  | >= 6.10.0 |
 
 ## Modules
 
 | Name | Source                          | Version |
 |------|---------------------------------|---------|
-| oke  | oracle-terraform-module/oke/oci | 4.5.9   |
+| oke  | oracle-terraform-module/oke/oci | 5.1.8   |
 
 ## Resources
 

@@ -1,6 +1,6 @@
 locals {
-  private_endpoint_ip   = split(":", element(var.cluster_endpoints, 0)["private_endpoint"])[0]
-  private_endpoint_port = split(":", element(var.cluster_endpoints, 0)["private_endpoint"])[1]
+  private_endpoint_ip   = split(":", var.cluster_endpoints["private_endpoint"])[0]
+  private_endpoint_port = split(":", var.cluster_endpoints["private_endpoint"])[1]
 
   ssh_private_key = (
     var.ssh_private_key != ""

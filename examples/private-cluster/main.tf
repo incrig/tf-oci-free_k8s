@@ -1,16 +1,15 @@
 module "tls" {
   source = "./modules/tls"
-
-  count = var.create_ssh_key_pair == true ? 1 : 0
+  count  = var.create_ssh_key_pair == true ? 1 : 0
 }
 
 module "free_k8s" {
   source = "../../"
   #  version = "0.0.5"
-  user_ocid     = var.user_ocid
-  tenancy_ocid  = var.tenancy_ocid
-  home_region   = var.home_region
-  region        = var.region
+  # user_ocid     = var.user_ocid
+  tenancy_ocid = var.tenancy_ocid
+  home_region  = var.home_region
+  region       = var.region
 
   control_plane_is_public     = "true"
   control_plane_allowed_cidrs = ["0.0.0.0/0"]
@@ -19,7 +18,7 @@ module "free_k8s" {
     oci.home = oci.home
   }
 
-  private_key_path = var.ssh_private_key_path
+  # private_key_path = var.ssh_private_key_path
 }
 
 module "kubernetes" {

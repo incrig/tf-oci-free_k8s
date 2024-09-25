@@ -1,11 +1,3 @@
-provider "oci" {
-  alias              = "home"
-  tenancy_ocid       = var.tenancy_ocid
-  user_ocid          = var.user_ocid
-  private_key_path   = var.private_key_path
-  region             = var.home_region
-}
-
 module "compartment" {
   source = "./modules/compartment"
   name   = var.name
@@ -30,8 +22,7 @@ module "oke" {
   compartment_id = module.compartment.compartment_id
 
   # bastion host
-  create_bastion = true
-
+  create_bastion = false
   # operator host
   create_operator = false
 
@@ -40,7 +31,9 @@ module "oke" {
   control_plane_allowed_cidrs = var.control_plane_allowed_cidrs
   kubernetes_version          = var.kubernetes_version
   cluster_type                = "basic"
-  control_plane_is_public     = var.control_plane_is_public
+
+  control_plane_is_public           = true
+  assign_public_ip_to_control_plane = false
 
   # node pools
   worker_pool_mode = "node-pool"
@@ -75,30 +68,30 @@ module "oke" {
   }
 }
 
-# module "bastion_service_control_plane" {
-#   source = "./modules/bastion-service"
+module "bastion_service_control_plane" {
+  source = "./modules/bastion-service"
 
-#   # general oci parameters
-#   compartment_id = module.compartment.compartment_id
-#   label_prefix   = var.label_prefix
+  # general oci parameters
+  compartment_id = module.compartment.compartment_id
+  label_prefix   = var.label_prefix
 
-#   # bastion service parameters
-#   bastion_service_access        = var.bastion_service_access
-#   bastion_service_name          = "${var.name}-cp"
-#   bastion_service_target_subnet = module.oke.control_plane_subnet_id
-#   vcn_id                        = module.oke.vcn_id
-# }
+  # bastion service parameters
+  bastion_service_access        = var.bastion_service_access
+  bastion_service_name          = "${var.name}-cp"
+  bastion_service_target_subnet = module.oke.control_plane_subnet_id
+  vcn_id                        = module.oke.vcn_id
+}
 
-# module "bastion_service_workers" {
-#   source = "./modules/bastion-service"
+module "bastion_service_workers" {
+  source = "./modules/bastion-service"
 
-#   # general oci parameters
-#   compartment_id = module.compartment.compartment_id
-#   label_prefix   = var.label_prefix
+  # general oci parameters
+  compartment_id = module.compartment.compartment_id
+  label_prefix   = var.label_prefix
 
-#   # bastion service parameters
-#   bastion_service_access        = var.bastion_service_access
-#   bastion_service_name          = "${var.name}-workers"
-#   bastion_service_target_subnet = module.oke.worker_subnet_id
-#   vcn_id                        = module.oke.vcn_id
-# }
+  # bastion service parameters
+  bastion_service_access        = var.bastion_service_access
+  bastion_service_name          = "${var.name}-workers"
+  bastion_service_target_subnet = module.oke.worker_subnet_id
+  vcn_id                        = module.oke.vcn_id
+}

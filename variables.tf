@@ -1,8 +1,3 @@
-variable "tenancy_ocid" {}
-variable "user_ocid" {}
-variable "private_key_path" {}
-variable "home_region" {}
-
 variable "name" {
   default     = "free-k8s"
   description = "The name to be used for the OKE cluster and compartment during creation."
@@ -10,11 +5,11 @@ variable "name" {
 }
 
 # # OCI Provider parameters
-# variable "home_region" {
-#   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
-#   description = "The tenancy's home region. Required to perform identity operations."
-#   type        = string
-# }
+variable "home_region" {
+  # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
+  description = "The tenancy's home region. Required to perform identity operations."
+  type        = string
+}
 
 variable "region" {
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
@@ -22,10 +17,10 @@ variable "region" {
   type        = string
 }
 
-# variable "tenancy_ocid" {
-#   description = "The tenancy id of the OCI Cloud Account in which to create the resources."
-#   type        = string
-# }
+variable "tenancy_ocid" {
+  description = "The tenancy id of the OCI Cloud Account in which to create the resources."
+  type        = string
+}
 
 variable "label_prefix" {
   default     = "none"
@@ -67,7 +62,7 @@ variable "kubernetes_version" {
 }
 
 variable "control_plane_is_public" {
-  default     = "true"
+  default     = true
   description = "Whether the Kubernetes control plane endpoint should be allocated a public IP address to enable access over public internet."
   type        = bool
 }

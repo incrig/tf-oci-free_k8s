@@ -22,7 +22,6 @@ ssh_private_key_path = ""
 ssh_public_key_path  = ""
 
 # oke cluster options
-kubernetes_version = ""
 node_pool_size = 2
 
 # general oci parameters

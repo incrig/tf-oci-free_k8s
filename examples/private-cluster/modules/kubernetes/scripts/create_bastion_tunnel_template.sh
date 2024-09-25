@@ -66,8 +66,6 @@ if lsof -t -i:6443; then
   kill "$(lsof -t -i:6443)"
 fi
 nohup ssh -i ${private_key_file} \
-  -o HostKeyAlgorithms=+ssh-rsa \
-  -o PubkeyAcceptedAlgorithms=+ssh-rsa \
   -N -L 6443:${cluster_ip}:${cluster_port} \
   -p 22 \
   -o StrictHostKeyChecking=no \
