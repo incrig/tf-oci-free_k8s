@@ -8,7 +8,9 @@ resource "null_resource" "create_service_account" {
   provisioner "local-exec" {
     command = "kubectl --kubeconfig ~/.kube/ociconfig apply -f ${path.module}/resources/oke-admin-service-account-token.yaml"
   }
+}
 
+resource "null_resource" "remove_configs" {
   provisioner "local-exec" {
     when    = destroy
     command = "kubectl --kubeconfig ~/.kube/ociconfig delete -f ${path.module}/resources/oke-admin-service-account-token.yaml"

@@ -1,8 +1,3 @@
-module "compartment" {
-  source = "./modules/compartment"
-  name   = var.name
-}
-
 module "oke" {
   source  = "oracle-terraform-modules/oke/oci"
   version = "5.1.8"
@@ -19,7 +14,7 @@ module "oke" {
   ssh_public_key_path  = var.ssh_public_key_path
 
   # general oci parameters
-  compartment_id = module.compartment.compartment_id
+  compartment_id = oci_identity_compartment.free_k8s.id
 
   # bastion host
   create_bastion = false

@@ -17,7 +17,6 @@ module "free_k8s" {
   providers = {
     oci.home = oci.home
   }
-
   # private_key_path = var.ssh_private_key_path
 }
 
@@ -32,7 +31,6 @@ module "kubernetes" {
   ssh_private_key_path = var.ssh_private_key_path
   ssh_public_key       = var.create_ssh_key_pair ? chomp(module.tls[0].ssh_public_key) : var.ssh_public_key
   ssh_public_key_path  = var.ssh_public_key_path
-
 
   cluster_id        = module.free_k8s.cluster_id
   cluster_endpoints = module.free_k8s.cluster_endpoints
