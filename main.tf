@@ -67,7 +67,7 @@ module "bastion_service_control_plane" {
   source = "./modules/bastion-service"
 
   # general oci parameters
-  compartment_id = module.compartment.compartment_id
+  compartment_id = oci_identity_compartment.free_k8s.id
   label_prefix   = var.label_prefix
 
   # bastion service parameters
@@ -81,7 +81,7 @@ module "bastion_service_workers" {
   source = "./modules/bastion-service"
 
   # general oci parameters
-  compartment_id = module.compartment.compartment_id
+  compartment_id = oci_identity_compartment.free_k8s.id
   label_prefix   = var.label_prefix
 
   # bastion service parameters

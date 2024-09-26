@@ -23,7 +23,7 @@ output "worker_pools" {
 
 output "compartment_id" {
   description = "The OCID of the compartment that is using Oracle Cloud's Always Free services"
-  value       = module.compartment.compartment_id
+  value       = oci_identity_compartment.free_k8s.id
 }
 
 output "vcn_id" {
