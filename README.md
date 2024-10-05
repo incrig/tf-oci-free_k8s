@@ -30,13 +30,13 @@ module "free_k8s" {
 | Name      | Version    |
 |-----------|------------|
 | terraform | >= 1.9.0   |
-| oci       | >= 6.10.0 |
+| oci       | >= 6.12.0 |
 
 ## Providers
 
 | Name | Version    |
 |------|------------|
-| oci  | >= 6.10.0 |
+| oci  | >= 6.12.0 |
 
 ## Modules
 

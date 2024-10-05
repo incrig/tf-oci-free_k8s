@@ -11,8 +11,8 @@ module "free_k8s" {
   home_region  = var.home_region
   region       = var.region
 
-  control_plane_is_public     = "true"
-  control_plane_allowed_cidrs = ["0.0.0.0/0"]
+  control_plane_is_public     = "false"
+  control_plane_allowed_cidrs = ["10.0.0.0/16"]
 
   providers = {
     oci.home = oci.home
